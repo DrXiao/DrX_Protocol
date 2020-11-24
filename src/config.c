@@ -10,3 +10,7 @@ uint8_t defaultGatewayIP[IPV4_ADDR_LEN] = {192, 168, 43, 0};
 uint8_t destEthAddr[ETH_ADDR_LEN];
 
 uint8_t destIPAddr[IPV4_ADDR_LEN];
+
+uint8_t ethAddrBuf[ETH_ADDR_LEN];
+
+uint8_t ipAddrBuf[IPV4_ADDR_LEN];

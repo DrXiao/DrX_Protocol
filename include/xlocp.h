@@ -27,12 +27,12 @@
  *
  *      Because XLOCP is at experiment phase, Obeying the above rules is in
  *      order to simply the problems while sending packets.
- * 
- *      Actually, user has to deal with more details at every layer and the details will
- *      be mentioned after.
- * 
+ *
+ *      Actually, user has to deal with more details at every layer and the
+ * details will be mentioned after.
+ *
  * 3.   XLOCP - Header structure.
- * 
+ *
  *  0         8         16         24        31 (bit)
  *  |--------------------|--------------------|
  *  |       Hash Destination IP Address       |
@@ -58,8 +58,11 @@
  *          0x83 - signed int               *
  *          0x85 - signed float             *
  *          0x86 - signed double            *
- * 
+ *
  * */
+
+#define HASH_DEST_IP(xlocpHeader)                                              \
+    (*(uint32_t *)(xlocpHeader->destIPHashAddr) ^ xlocpHeader->hashCode)
 
 typedef struct {
     uint8_t destIPHashAddr[IPV4_ADDR_LEN];
@@ -74,11 +77,14 @@ typedef struct {
     ipHeader_t ipHeader;
     tcpHeader_t tcpHeader;
     xlocpHeader_t xlocpHeader;
-    uint8_t data[1514 - sizeof(xlocpHeader_t) - sizeof(tcpHeader_t) - sizeof(ipHeader_t) - sizeof(ethHeader_t)];
+    uint8_t data[1514 - sizeof(xlocpHeader_t) - sizeof(tcpHeader_t) -
+                 sizeof(ipHeader_t) - sizeof(ethHeader_t)];
 } xlocpPacket_t;
 
 void xlocpMainDecapsulation(uint8_t *, int);
 
 void xlocpMainEncapsulation(pcap_t *);
+
+void xlocpExplain(uint8_t *, int);
 
 #endif
