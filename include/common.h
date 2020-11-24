@@ -33,6 +33,12 @@
     fgetc(stdin)
 
 
+extern uint8_t myEthAddr[ETH_ADDR_LEN];
+extern uint8_t myIPAddr[IPV4_ADDR_LEN];
+extern uint8_t defaultGatewayIP[IPV4_ADDR_LEN];
+extern uint8_t destEthAddr[ETH_ADDR_LEN];
+extern uint8_t destIPAddr[IPV4_ADDR_LEN];
+
 typedef uint32_t ipAddr_t;
 int readReady();
 char *time2DecStr(time_t);
@@ -42,5 +48,6 @@ char *eth_MacAddr(const unsigned char *, char *);
 
 void print_IP(unsigned char *, char *);
 void print_Data(const unsigned char *, int);
+
 
 #endif /* __COMMON_H__ */

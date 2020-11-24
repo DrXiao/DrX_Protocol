@@ -16,7 +16,7 @@ void tcpMainDecapsulation(uint8_t *data, int dataLen) {
     printf("Source Port - %d\n", tcpPktHdr->srcPort);
     printf("Destination Port - %d\n", tcpPktHdr->destPort);
     printf("Sequence Number - %d\n", tcpPktHdr->seqNumber);
-    printf("Acknowledge Number - %d\n", tcpPktHdr->AckNumber);
+    printf("Acknowledge Number - %u\n", tcpPktHdr->AckNumber);
     printf("Offset - %d\n", GET_TCP_OFFSET(tcpPktHdr));
     printf("Flag Code - %x\n", GET_TCP_FLAG(tcpPktHdr));
     printf("Window - %d\n", tcpPktHdr->window);

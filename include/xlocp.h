@@ -1,6 +1,13 @@
 #ifndef __XLOCP_H__
 #define __XLOCP_H__
 
+#include <stdint.h>
+
+#include "common.h"
+#include "eth.h"
+#include "ip.h"
+#include "tcp.h"
+
 /*
  * Dr.Xiao (Dr.Siao) - Learning-Oriented and Control Protocol - XLOCP (or SLOCP)
  *
@@ -32,9 +39,7 @@
  *  |--------------------|--------------------|
  *  |            4 Byte Hash Code             |
  *  |--------------------|--------------------|
- *  | DataType|HdrLength |    Header Length   |
- *  |--------------------|--------------------|
- *  |     Data Length    |   Padding Length   |
+ *  | DataType|PaddingLen|    Data Length     |
  *  |--------------------|--------------------|
  *  |                Data (hash) ...          |
  *  |--------------------|--------------------|
@@ -43,5 +48,37 @@
  *  |                (Padding)                |
  *  |--------------------|--------------------|
  *
+ * 4. For "Data Type" field, the data should be explained as
+ *          0x01 - unsigned char            *
+ *          0x02 - unsigned short
+ *          0x03 - unsigned int             *
+ *          0x04 - unsigned long long int
+ *          0x05 - unsigned float           *
+ *          0x06 - unsigned double          *
+ *          0x83 - signed int               *
+ *          0x85 - signed float             *
+ *          0x86 - signed double            *
+ * 
  * */
+
+typedef struct {
+    uint8_t destIPHashAddr[IPV4_ADDR_LEN];
+    uint32_t hashCode;
+    uint8_t dataType;
+    uint8_t paddingLen;
+    uint16_t dataLen;
+} xlocpHeader_t;
+
+typedef struct {
+    ethHeader_t ethHeader;
+    ipHeader_t ipHeader;
+    tcpHeader_t tcpHeader;
+    xlocpHeader_t xlocpHeader;
+    uint8_t data[1514 - sizeof(xlocpHeader_t) - sizeof(tcpHeader_t) - sizeof(ipHeader_t) - sizeof(ethHeader_t)];
+} xlocpPacket_t;
+
+void xlocpMainDecapsulation(uint8_t *, int);
+
+void xlocpMainEncapsulation(pcap_t *);
+
 #endif
