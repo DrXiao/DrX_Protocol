@@ -23,7 +23,7 @@ void ethMainDecapsulation(uint8_t *data, int dataLen) {
 #endif /* DEBUG_ETH */
 
     switch (ethPkt->ethHeader.ethType) {
-    case ETH_TYPE_IP: ipMainDecapsulation(ethPkt->data, dataLen); break;
+    case ETH_TYPE_IP: ipMainDecapsulation(ethPkt->data, dataLen - sizeof(ethHeader_t)); break;
     case ETH_TYPE_ARP: break;
     }
 }

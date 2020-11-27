@@ -161,3 +161,11 @@ void print_Data(const uint8_t *data, int len) {
     }
     if (i % MAX_LINE_LEN != 0) printf("\n");
 }
+
+uint16_t swap16(uint16_t var) {
+    return (var >> 8 | var << 8);
+}
+
+uint32_t swap32(uint32_t var) {
+    return (var >> 24 | (var << 8) >> 16 | (var >> 8) << 16 | var << 24);
+}

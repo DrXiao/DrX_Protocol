@@ -9,9 +9,9 @@
 #define TCP_FLAG_CODE_MASK 0x003F
 
 #define GET_TCP_OFFSET(tcpHeader)                                              \
-    (((tcpHeader->offset_and_FlagCode) & TCP_OFFSET_MASK) >> 12)
+    4 * (((swap16(tcpHeader->offset_and_FlagCode)) & TCP_OFFSET_MASK) >> 12)
 #define GET_TCP_FLAG(tcpHeader)                                                \
-    (((tcpHeader->offset_and_FlagCode) & TCP_FLAG_CODE_MASK))
+    (((swap16(tcpHeader->offset_and_FlagCode)) & TCP_FLAG_CODE_MASK))
 
 /*
  *  Transport Layer

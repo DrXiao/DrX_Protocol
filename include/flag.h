@@ -4,7 +4,7 @@
 #define FG_ARP_SEND_REQUEST 0
 
 #define DEBUG_PHYSICAL 0
-#define DEBUG_ETH 0
+#define DEBUG_ETH 1
 
 #define DEBUG_IP 1
 

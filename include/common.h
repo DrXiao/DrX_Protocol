@@ -51,4 +51,7 @@ char *eth_MacAddr(const unsigned char *, char *);
 void print_IP(unsigned char *, char *);
 void print_Data(const unsigned char *, int);
 
+uint16_t swap16(uint16_t);
+uint32_t swap32(uint32_t);
+
 #endif /* __COMMON_H__ */

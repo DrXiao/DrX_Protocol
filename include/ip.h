@@ -14,7 +14,7 @@
 #define IP_OFFSET_MASK 0x1FFF
 
 #define GET_IP_VER(ipHeader) (((ipHeader->verIP_and_HdrLen) & IP_VER_MASK) >> 4)
-#define GET_IP_HDR_LEN(ipHeader) ((ipHeader->verIP_and_HdrLen) & IP_HDR_LEN_MASK)
+#define GET_IP_HDR_LEN(ipHeader) 4 * ((ipHeader->verIP_and_HdrLen) & IP_HDR_LEN_MASK)
 #define GET_IP_FLAG(ipHeader)                                                  \
     (((ipHeader->flag_and_Offset) & IP_FLAG_MASK) >> 13)
 #define GET_IP_OFFSET(ipHeader) ((ipHeader->flag_and_Offset) & IP_OFFSET_MASK)
