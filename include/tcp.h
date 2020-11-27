@@ -9,7 +9,7 @@
 #define TCP_FLAG_CODE_MASK 0x003F
 
 #define GET_TCP_OFFSET(tcpHeader)                                              \
-    4 * (((swap16(tcpHeader->offset_and_FlagCode)) & TCP_OFFSET_MASK) >> 12)
+    ((((swap16(tcpHeader->offset_and_FlagCode)) & TCP_OFFSET_MASK) >> 12) << 2)
 #define GET_TCP_FLAG(tcpHeader)                                                \
     (((swap16(tcpHeader->offset_and_FlagCode)) & TCP_FLAG_CODE_MASK))
 
@@ -36,11 +36,11 @@
  * */
 
 typedef struct {
-    uint16_t srcPort;
-    uint16_t destPort;
+    uint16_t srcPort;       // Needs swap16
+    uint16_t destPort;      // Needs swap16
     uint32_t seqNumber;
     uint32_t AckNumber;
-    uint16_t offset_and_FlagCode;
+    uint16_t offset_and_FlagCode;   // Needs swap16
     uint16_t window;
     uint16_t checkSum;
     uint16_t urgentPtr;

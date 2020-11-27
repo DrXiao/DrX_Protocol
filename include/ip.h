@@ -43,12 +43,12 @@
 typedef struct {
     uint8_t verIP_and_HdrLen;
     uint8_t typeOfService;
-    uint16_t totalLength;
+    uint16_t totalLength;           // Needs swap16
     uint16_t ident;
     uint16_t flag_and_Offset;
     uint8_t timeToLive;
     uint8_t protocol;
-    uint16_t checkSum;
+    uint16_t checkSum;              // Needs swap16
     uint8_t srcIPAddr[IPV4_ADDR_LEN];
     uint8_t destIPAddr[IPV4_ADDR_LEN];
 } ipHeader_t;

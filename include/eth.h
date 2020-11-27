@@ -35,7 +35,7 @@
 typedef struct {
     uint8_t destEthAddr[ETH_ADDR_LEN];
     uint8_t srcEthAddr[ETH_ADDR_LEN];
-    uint16_t ethType;
+    uint16_t ethType;   // Needs swap16
 } ethHeader_t;
 
 typedef struct {
