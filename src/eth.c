@@ -20,7 +20,7 @@ void ethMainDecapsulation(uint8_t *data, int dataLen) {
     printf("Eth Type - 0x%.4x\n", swap16(ethPkt->ethHeader.ethType));
 #endif /* DEBUG_ETH */
 
-    switch (swap16(ethPkt->ethHeader.ethType)) {
+    switch (ethPkt->ethHeader.ethType) {
     case ETH_TYPE_IP: ipMainDecapsulation(ethPkt->data, dataLen - sizeof(ethHeader_t)); break;
     case ETH_TYPE_ARP: break;
     }

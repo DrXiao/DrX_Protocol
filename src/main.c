@@ -5,6 +5,9 @@
 
 #include "myPcap.h"
 #include "common.h"
+#include "xlocp.h"
+
+xlocpPacket_t pkt;
 
 #ifndef PCAP_OPENFLAG_PROMISCUOUS
 #define PCAP_OPENFLAG_PROMISCUOUS 1
@@ -13,7 +16,6 @@
 int main(int argc, char **argv) {
     srand(time(NULL));
     pcap_if_t *allDevs;
-
     char *devName, errbuf[PCAP_ERRBUF_SIZE];
     pcap_t *devAdapterHandler;
 

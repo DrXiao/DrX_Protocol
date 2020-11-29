@@ -29,7 +29,9 @@ void tcpMainDecapsulation(uint8_t *data, int dataLen) {
 }
 
 void tcpXlocpEncapsulation(tcpHeader_t *tcpHdr) {
-    tcpHdr->srcPort = swap16(51234);
-    tcpHdr->srcPort = swap16(52234);
-    tcpHdr->offset_and_FlagCode = swap16(0x05 << 12);
+    tcpHdr->srcPort = swap16(53234);
+    tcpHdr->destPort = swap16(52234);
+    tcpHdr->offset_and_FlagCode = 0x5000;
+    tcpHdr->offset_and_FlagCode = swap16(tcpHdr->offset_and_FlagCode);
+    tcpHdr->seqNumber = 1;
 }

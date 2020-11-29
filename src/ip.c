@@ -43,7 +43,7 @@ void ipMainDecapsulation(uint8_t *data, int dataLen) {
 void ipXlocpEncapsulation(ipHeader_t *ipHdr, int dataLen) {
     ipHdr->verIP_and_HdrLen = 0x45;
     ipHdr->typeOfService = 0x0000;
-    ipHdr->totalLength = 4 * sizeof(ipHeader_t) + dataLen;
+    ipHdr->totalLength = swap16(sizeof(ipHeader_t) + dataLen);
     ipHdr->ident = 0;
     ipHdr->flag_and_Offset = swap16(0x1000); 
     ipHdr->timeToLive = 2;

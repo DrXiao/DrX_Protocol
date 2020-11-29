@@ -83,7 +83,7 @@ typedef struct {
     ipHeader_t ipHeader;
     tcpHeader_t tcpHeader;
     xlocpHeader_t xlocpHeader;
-    uint8_t data[1514 - sizeof(xlocpHeader_t) - sizeof(tcpHeader_t) -
+    uint8_t data[1510 - sizeof(xlocpHeader_t) - sizeof(tcpHeader_t) -
                  sizeof(ipHeader_t) - sizeof(ethHeader_t)];
 } xlocpPacket_t;
 

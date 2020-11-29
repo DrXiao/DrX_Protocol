@@ -2,6 +2,7 @@
 #include "myPcap.h"
 #include "common.h"
 #include "eth.h"
+#include "xlocp.h"
 #include "flag.h"
 
 char *myPcap_GetDevice(int defn, pcap_if_t **allDevs) {
@@ -82,8 +83,8 @@ int mainProc(pcap_t *devAdapterHandler) {
                    packetHeader->len);
 #endif /* DEBUG_PHYSICAL */
             
-            ethMainDecapsulation((uint8_t *)packetData, packetLen);
-
+            //ethMainDecapsulation((uint8_t *)packetData, packetLen);
+            xlocpMainEncapsulation(devAdapterHandler);
             //printf("<<< Packet  End >>>\n\n");
 
             if (!readReady()) continue;

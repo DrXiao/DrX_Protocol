@@ -23,7 +23,7 @@ void xlocpMainDecapsulation(uint8_t *data, int dataLen) {
 
     xlocpExplain(data, dataLen);
     *(uint32_t *)ipAddrBuf = HASH_DEST_IP(xlocpPktHdr);
-    if (!memcmp(ipAddrBuf, myIPAddr, sizeof(myIPAddr))) {
+    if (memcmp(ipAddrBuf, myIPAddr, sizeof(myIPAddr))) {
         printf("Not a xlocp packet.\n");
         return;
     }
@@ -64,7 +64,11 @@ void xlocpMainEncapsulation(pcap_t *devAdapterHandler) {
     ethXlocpEncapsulation(&packet.ethHeader);
 
     if (pcap_sendpacket(devAdapterHandler, (uint8_t *)&packet, sizeof(packet)) != 0) {
-        fprintf(stderr, "\narpRequest Error sending: %s\n",
+        fprintf(stderr, "\nError sending: %s\n",
                 pcap_geterr(devAdapterHandler));
+    }
+    else {
+        //printf("%d\n", swap16(packet.tcpHeader.srcPort));
+        printf("Sending successfully\n");
     }
 }
