@@ -29,8 +29,8 @@
  * 
  * */
 
-#define ETH_TYPE_IP 0x0008
-#define ETH_TYPE_ARP 0x0608
+#define ETH_TYPE_IP 0x0800
+#define ETH_TYPE_ARP 0x0806
 
 typedef struct {
     uint8_t destEthAddr[ETH_ADDR_LEN];

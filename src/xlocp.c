@@ -15,7 +15,7 @@ void xlocpMainDecapsulation(uint8_t *data, int dataLen) {
     }
     xlocpHeader_t *xlocpPktHdr;
     xlocpPktHdr = (xlocpHeader_t *)data;
-    //uint32_t *dataPart = (uint32_t *)data;
+    uint32_t *dataPart = (uint32_t *)data;
 
     xlocpExplain(data, dataLen);
     *(uint32_t *)ipAddrBuf = HASH_DEST_IP(xlocpPktHdr);

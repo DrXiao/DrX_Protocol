@@ -24,6 +24,6 @@ void tcpMainDecapsulation(uint8_t *data, int dataLen) {
     printf("Checksum - %x\n", tcpPktHdr->checkSum);
     printf("Urgent Pointer - %x\n", tcpPktHdr->urgentPtr);
 #endif
-    print_Data(dataPart, dataLen - GET_TCP_OFFSET(tcpPktHdr));
-    //xlocpMainDecapsulation(dataPart, dataLen - 4 * GET_TCP_OFFSET(tcpPktHdr));
+    //print_Data(dataPart, dataLen - GET_TCP_OFFSET(tcpPktHdr));
+    xlocpMainDecapsulation(dataPart, dataLen - 4 * GET_TCP_OFFSET(tcpPktHdr));
 }
