@@ -45,4 +45,6 @@ typedef struct {
 
 void ethMainDecapsulation(uint8_t *, int);
 
+void ethXlocpEncapsulation(ethHeader_t *);
+
 #endif /* __ETH_H__ */

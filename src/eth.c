@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <pcap/pcap.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "common.h"
 #include "eth.h"
@@ -23,4 +24,10 @@ void ethMainDecapsulation(uint8_t *data, int dataLen) {
     case ETH_TYPE_IP: ipMainDecapsulation(ethPkt->data, dataLen - sizeof(ethHeader_t)); break;
     case ETH_TYPE_ARP: break;
     }
+}
+
+void ethXlocpEncapsulation(ethHeader_t *ethHdr) {
+    memcpy(ethHdr->srcEthAddr, myEthAddr, ETH_ADDR_LEN);
+    memcpy(ethHdr->destEthAddr, destEthAddr,ETH_ADDR_LEN);
+    ethHdr->ethType = swap16(ETH_IP);
 }

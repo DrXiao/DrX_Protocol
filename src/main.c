@@ -11,6 +11,7 @@
 #endif
 
 int main(int argc, char **argv) {
+    srand(time(NULL));
     pcap_if_t *allDevs;
 
     char *devName, errbuf[PCAP_ERRBUF_SIZE];

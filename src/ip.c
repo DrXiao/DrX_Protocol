@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <pcap/pcap.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "common.h"
 #include "ip.h"
@@ -37,4 +38,16 @@ void ipMainDecapsulation(uint8_t *data, int dataLen) {
         break;
     case IP_PROTOCOL_UDP: break;
     }
+}
+
+void ipXlocpEncapsulation(ipHeader_t *ipHdr, int dataLen) {
+    ipHdr->verIP_and_HdrLen = 0x45;
+    ipHdr->typeOfService = 0x0000;
+    ipHdr->totalLength = 4 * sizeof(ipHeader_t) + dataLen;
+    ipHdr->ident = 0;
+    ipHdr->flag_and_Offset = swap16(0x1000); 
+    ipHdr->timeToLive = 2;
+    ipHdr->protocol = IP_PROTOCOL_TCP;
+    memcpy(ipHdr->srcIPAddr, myIPAddr, IPV4_ADDR_LEN);
+    memcpy(ipHdr->destIPAddr, destIPAddr, IPV4_ADDR_LEN);
 }

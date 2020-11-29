@@ -55,4 +55,6 @@ typedef struct {
 
 void ipMainDecapsulation(uint8_t *, int);
 
+void ipXlocpEncapsulation(ipHeader_t *, int);
+
 #endif /* __IP_H__ */

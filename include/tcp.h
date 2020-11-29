@@ -48,4 +48,6 @@ typedef struct {
 
 void tcpMainDecapsulation(uint8_t *, int);
 
+void tcpXlocpEncapsulation(tcpHeader_t *);
+
 #endif /* __TCP_H__ */

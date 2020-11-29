@@ -53,13 +53,19 @@
  *          0x02 - unsigned short
  *          0x03 - unsigned int             *
  *          0x04 - unsigned long long int
- *          0x05 - unsigned float           *
- *          0x06 - unsigned double          *
+ *          0x05 - unsigned float           
+ *          0x06 - unsigned double          
  *          0x83 - signed int               *
  *          0x85 - signed float             *
  *          0x86 - signed double            *
  *
  * */
+
+#define XLOCP_CHAR_TYPE 0x01
+#define XLOCP_UINT_TYPE 0x03
+#define XLOCP_INT 0x83
+#define XLOCP_FLOAT 0x85
+#define XLOCP_DOUBLE 0x86
 
 #define HASH_DEST_IP(xlocpHeader)                                              \
     (*(uint32_t *)(xlocpHeader->destIPHashAddr) ^ xlocpHeader->hashCode)
