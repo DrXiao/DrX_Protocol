@@ -14,7 +14,7 @@ void ipMainDecapsulation(uint8_t *data, int dataLen) {
     ipHeader_t *ipPktHdr;
 
     ipPktHdr = (ipHeader_t *)data;
-    uint8_t *dataPart = data + GET_IP_HDR_LEN(ipPktHdr);
+    uint8_t *dataPart = data + GET_IP_HDR_LEN(ipPktHdr) + 2;
 
 #if (DEBUG_IP == 1)
     printf("|--- Protocol Header ---|\n");
