@@ -19,7 +19,7 @@ void xlocpMainDecapsulation(uint8_t *data, int dataLen) {
     }
     xlocpHeader_t *xlocpPktHdr;
     xlocpPktHdr = (xlocpHeader_t *)data;
-    uint32_t *dataPart = (uint32_t *)data;
+    uint32_t *dataPart = (uint32_t *)data + 3;
 
     xlocpExplain(data, dataLen);
     *(uint32_t *)ipAddrBuf = HASH_DEST_IP(xlocpPktHdr);
@@ -69,6 +69,8 @@ void xlocpMainEncapsulation(pcap_t *devAdapterHandler) {
     }
     else {
         //printf("%d\n", swap16(packet.tcpHeader.srcPort));
+        //printf("%x\n", packet.xlocpHeader.hashCode);
+        //print_Data(packet.data, 20);
         printf("Sending successfully\n");
     }
 }

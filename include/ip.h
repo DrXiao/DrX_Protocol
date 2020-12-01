@@ -6,7 +6,7 @@
 #include "common.h"
 
 #define IP_PROTOCOL_TCP 0x06
-#define IP_PROTOCOL_UDP 0x17
+#define IP_PROTOCOL_UDP 0x11
 
 #define IP_VER_MASK 0xF0
 #define IP_HDR_LEN_MASK 0x0F
