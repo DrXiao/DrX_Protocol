@@ -23,8 +23,8 @@
  *      0x08 06 -> 0x06 08
  * */
 
-#define ETH_IP 0x0008
-#define ETH_ARP 0x0608
+#define ETH_IP 0x0800
+#define ETH_ARP 0x0806
 
 /*
  *  Network layer

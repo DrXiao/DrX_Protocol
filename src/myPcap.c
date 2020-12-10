@@ -74,7 +74,8 @@ int mainProc(pcap_t *devAdapterHandler) {
         if (responseValue > 0) {
 
             packetLen = packetHeader->caplen;
-            //printf("<<< Packet  Start >>>\n");
+#if (DEBUG_PARSE_PKT == 1)
+            printf("<<< Packet  Start >>>\n");
 #if (DEBUG_PHYSICAL == 1)
             printf("|--- Physical Header ---|\n");
             localtime_r(&packetHeader->ts.tv_sec, &localTime);
@@ -83,10 +84,13 @@ int mainProc(pcap_t *devAdapterHandler) {
                    packetHeader->len);
 #endif /* DEBUG_PHYSICAL */
             
-            //ethMainDecapsulation((uint8_t *)packetData, packetLen);
-            xlocpMainEncapsulation(devAdapterHandler);
-            //printf("<<< Packet  End >>>\n\n");
+            ethMainDecapsulation((uint8_t *)packetData, packetLen);
+            printf("<<< Packet  End >>>\n\n");
+#endif /* DEBUG_PARSE_PKT */
 
+#if (DEBUG_XLOCP_SEND == 1)
+            xlocpMainEncapsulation(devAdapterHandler);
+#endif
             if (!readReady()) continue;
             if ((key = fgetc(stdin)) == '\n') break;
             ungetc(key, stdin);

@@ -36,14 +36,14 @@
  * */
 
 typedef struct {
-    uint16_t srcPort;       // Needs swap16
-    uint16_t destPort;      // Needs swap16
+    uint16_t srcPort;               // Needs swap16
+    uint16_t destPort;              // Needs swap16
     uint32_t seqNumber;
     uint32_t AckNumber;
     uint16_t offset_and_FlagCode;   // Needs swap16
-    uint16_t window;
-    uint16_t checkSum;
-    uint16_t urgentPtr;
+    uint16_t window;                // Needs swap16
+    uint16_t checkSum;              // Needs swap16
+    uint16_t urgentPtr;             // Needs swap16
 } tcpHeader_t;
 
 void tcpMainDecapsulation(uint8_t *, int);

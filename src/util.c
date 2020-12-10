@@ -167,5 +167,5 @@ uint16_t swap16(uint16_t var) {
 }
 
 uint32_t swap32(uint32_t var) {
-    return (var >> 24 | (var << 8) >> 16 | (var >> 8) << 16 | var << 24);
+    return (var >> 24 | ((var << 8) >> 24) << 8 | ((var >> 8) << 24) >> 8 | var << 24);
 }

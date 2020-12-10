@@ -16,22 +16,24 @@ void tcpMainDecapsulation(uint8_t *data, int dataLen) {
     printf("|--- TCP Header ---|\n");
     printf("Source Port - %d\n", swap16(tcpPktHdr->srcPort));
     printf("Destination Port - %d\n", swap16(tcpPktHdr->destPort));
-    printf("Sequence Number - %u\n", tcpPktHdr->seqNumber);
-    printf("Acknowledge Number - %u\n", tcpPktHdr->AckNumber);
+    printf("Sequence Number - %u\n", swap32(tcpPktHdr->seqNumber));
+    printf("Acknowledge Number - %u\n", swap32(tcpPktHdr->AckNumber));
     printf("Offset - %u\n", GET_TCP_OFFSET(tcpPktHdr));
     printf("Flag Code - %x\n", GET_TCP_FLAG(tcpPktHdr));
-    printf("Window - %d\n", tcpPktHdr->window);
-    printf("Checksum - %x\n", tcpPktHdr->checkSum);
+    printf("Window - %d\n", swap16(tcpPktHdr->window));
+    printf("Checksum - %x\n", swap16(tcpPktHdr->checkSum));
     printf("Urgent Pointer - %x\n", tcpPktHdr->urgentPtr);
 #endif
-    //print_Data(dataPart, dataLen - GET_TCP_OFFSET(tcpPktHdr));
+#if (DEBUG_XLOCP == 0)
+    print_Data(dataPart, dataLen - GET_TCP_OFFSET(tcpPktHdr));
+#else
     xlocpMainDecapsulation(dataPart, dataLen - 4 * GET_TCP_OFFSET(tcpPktHdr));
+#endif
 }
 
 void tcpXlocpEncapsulation(tcpHeader_t *tcpHdr) {
     tcpHdr->srcPort = swap16(53234);
     tcpHdr->destPort = swap16(52234);
-    tcpHdr->offset_and_FlagCode = 0x5000;
-    tcpHdr->offset_and_FlagCode = swap16(tcpHdr->offset_and_FlagCode);
-    tcpHdr->seqNumber = 1;
+    tcpHdr->seqNumber = swap32(1);
+    tcpHdr->offset_and_FlagCode = swap16(0x5000);
 }
